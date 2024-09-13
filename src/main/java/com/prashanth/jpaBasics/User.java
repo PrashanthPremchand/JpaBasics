@@ -1,18 +1,20 @@
 package com.prashanth.jpaBasics;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "user_info") //by default the table name is name of the class in lowercase here it is "user" by using this annotation @table(name = "") we can specify the name of the table
 public class User {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
     private String name;
     private int age;
     private String mobile;
+
+    @OneToOne(mappedBy = "user")
+    private Card card;
 
     public User(){
 
